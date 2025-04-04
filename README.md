@@ -7,6 +7,8 @@ Customized Ollama image with:
 
 ## Check Ollama ENV variables:
 
+- https://github.com/ollama/ollama/issues/2941
+
 ```
 $ o help serve
 Start ollama

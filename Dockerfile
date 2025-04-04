@@ -9,7 +9,7 @@ RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \
 RUN curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list \
     | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' \
     | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-RUN sudo apt-get update
+RUN apt update -y
 RUN apt install -y nvidia-container-toolkit
 ADD run.sh /usr/local/bin/run.sh
 EXPOSE 11434

@@ -11,6 +11,7 @@ RUN curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-co
     | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 RUN apt update -y
 RUN apt install -y nvidia-container-toolkit
+RUN nvidia-ctk runtime configure --runtime=containerd
 ADD run.sh /usr/local/bin/run.sh
 EXPOSE 11434
 ENTRYPOINT ["/usr/local/bin/run.sh"]

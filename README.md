@@ -44,9 +44,52 @@ Environment Variables:
 ## Check Ollama status
 
 ```
-$ ollama ps
+root@ollama-0:/# ollama ps
 NAME               ID              SIZE     PROCESSOR         UNTIL
-llama3.3:latest    a6eb4748fd29    47 GB    93%/7% CPU/GPU    4 minutes from now
+llama3.3:latest    a6eb4748fd29    47 GB    93%/7% CPU/GPU    35 seconds from now
+root@ollama-0:/# nvidia-smi
+Sat Apr  5 05:01:27 2025
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA RTX A2000 Laptop GPU    Off |   00000000:01:00.0  On |                  N/A |
+| N/A   51C    P8              8W /   60W |    2484MiB /   4096MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
++-----------------------------------------------------------------------------------------+
+```
+
+## Check GPU availability on k8s nodes
+
+- `kubectl describe node <nodename>`
+
+```
+Capacity:
+  cpu:                16
+  ephemeral-storage:  959786032Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             71442128Ki
+  nvidia.com/gpu:     1
+  pods:               110
+Allocatable:
+  cpu:                16
+  ephemeral-storage:  958737456Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             71339728Ki
+  nvidia.com/gpu:     1
+  pods:               110
 ```
 
 ## Check Nvidia usage:

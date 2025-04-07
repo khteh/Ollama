@@ -69,6 +69,27 @@ Sat Apr  5 05:01:27 2025
 +-----------------------------------------------------------------------------------------+
 ```
 
+## Check model parameters
+
+```
+root@ollama-0:/# ollama show llama3.3
+  Model
+    architecture        llama
+    parameters          70.6B
+    context length      131072
+    embedding length    8192
+    quantization        Q4_K_M
+
+  Parameters
+    stop    "<|start_header_id|>"
+    stop    "<|end_header_id|>"
+    stop    "<|eot_id|>"
+
+  License
+    LLAMA 3.3 COMMUNITY LICENSE AGREEMENT
+    Llama 3.3 Version Release Date: December 6, 2024
+```
+
 ## Check GPU availability on k8s nodes
 
 - `kubectl describe node <nodename>`

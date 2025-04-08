@@ -2,7 +2,7 @@
 ollama serve &
 pid=$!                       # ADD: save the process ID of the server
 sleep 10
-models="${MODELS//,/ }"
+models=(${MODELS//,/ })
 for i in "${models[@]}"; do
       echo model: $i
       ollama pull $i

@@ -47,26 +47,15 @@ Environment Variables:
 root@ollama-0:/# ollama ps
 NAME               ID              SIZE     PROCESSOR         UNTIL
 llama3.3:latest    a6eb4748fd29    47 GB    93%/7% CPU/GPU    35 seconds from now
-root@ollama-0:/# nvidia-smi
-Sat Apr  5 05:01:27 2025
-+-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
-|-----------------------------------------+------------------------+----------------------+
-| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-|                                         |                        |               MIG M. |
-|=========================================+========================+======================|
-|   0  NVIDIA RTX A2000 Laptop GPU    Off |   00000000:01:00.0  On |                  N/A |
-| N/A   51C    P8              8W /   60W |    2484MiB /   4096MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
+```
 
-+-----------------------------------------------------------------------------------------+
-| Processes:                                                                              |
-|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
-|        ID   ID                                                               Usage      |
-|=========================================================================================|
-+-----------------------------------------------------------------------------------------+
+## List models:
+
+```
+root@ollama-0:/# ollama list
+NAME                       ID              SIZE      MODIFIED
+nomic-embed-text:latest    0a109f422b47    274 MB    6 hours ago
+llama3.3:latest            a6eb4748fd29    42 GB     6 hours ago
 ```
 
 ## Check model parameters
@@ -88,6 +77,20 @@ root@ollama-0:/# ollama show llama3.3
   License
     LLAMA 3.3 COMMUNITY LICENSE AGREEMENT
     Llama 3.3 Version Release Date: December 6, 2024
+root@ollama-0:/# ollama show nomic-embed-text
+  Model
+    architecture        nomic-bert
+    parameters          136.73M
+    context length      2048
+    embedding length    768
+    quantization        F16
+
+  Parameters
+    num_ctx    8192
+
+  License
+    Apache License
+    Version 2.0, January 2004
 ```
 
 ## Check GPU availability on k8s nodes
@@ -117,6 +120,26 @@ Allocatable:
 
 ```
 $ nvtop
+root@ollama-0:/# nvidia-smi
+Sat Apr  5 05:01:27 2025
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA RTX A2000 Laptop GPU    Off |   00000000:01:00.0  On |                  N/A |
+| N/A   51C    P8              8W /   60W |    2484MiB /   4096MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
++-----------------------------------------------------------------------------------------+
 ```
 
 ## To modify a modelfile:

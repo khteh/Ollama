@@ -1,5 +1,5 @@
 FROM ollama/ollama:latest
-MAINTAINER Kok How, Teh <funcoolgeeek@gmail.com>
+LABEL org.opencontainers.image.authors="Kok How, Teh <funcoolgeeek@gmail.com>"
 ARG DEBIAN_FRONTEND=noninteractive
 ADD run.sh /usr/local/bin/run.sh
 EXPOSE 11434

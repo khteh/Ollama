@@ -1,5 +1,7 @@
 #!/bin/bash
-ollama serve 2>&1 | tee /var/log/ollama/log &
+# https://github.com/ollama/ollama/issues/10136
+# Note: NO SPACE in-between ">("
+ollama serve 2>&1 | tee >(grep -v "/api/version" > /var/log/ollama/log) &
 pid=$!                       # ADD: save the process ID of the server
 sleep 10
 models=(${MODELS//,/ })

@@ -1,5 +1,5 @@
 #!/bin/bash
-ollama serve &
+ollama serve 2>&1 | tee /var/log/ollama/log &
 pid=$!                       # ADD: save the process ID of the server
 sleep 10
 models=(${MODELS//,/ })
